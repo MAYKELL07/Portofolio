@@ -1,0 +1,22 @@
+{
+  "name": "portofolio",
+  "version": "1.0.0",
+  "description": "NaN",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "npm run App.tsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAYKELL07/Portofolio.git"
+  },
+  "keywords": [
+    "Portofolio"
+  ],
+  "author": "Maykell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MAYKELL07/Portofolio/issues"
+  },
+  "homepage": "https://github.com/MAYKELL07/Portofolio#readme"
+}
