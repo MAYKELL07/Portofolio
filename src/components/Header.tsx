@@ -7,6 +7,6 @@ function Header() {
       <Heading as='h1'>Game Developer and Coder Portfolio</Heading>
     </Box>
   );
-}
+}a
 
 export default Header;
