@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Text,
@@ -10,9 +10,9 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-} from '@chakra-ui/react';
-import { HamburgerIcon, AddIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+} from "@chakra-ui/react";
+import { HamburgerIcon, AddIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { ColorModeSwitcher } from "../assets/ColorModeSwitcher";
 
 export const Header = () => {
   return (
@@ -32,19 +32,17 @@ export const Header = () => {
               variant="outline"
             />
             <MenuList>
-              <center>
-                <Breadcrumb spacing="10px" separator={<ChevronRightIcon color="gray.500" />}>
-                <BreadcrumbItem isCurrentPage>
-                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+              <Breadcrumb
+                spacing="10px"
+                separator={<ChevronRightIcon color="gray.500" />}
+              >
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="#">About</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Contact</BreadcrumbLink>
+                  <BreadcrumbLink href="/works">Works</BreadcrumbLink>
                 </BreadcrumbItem>
               </Breadcrumb>
-              </center>
               <MenuItem>Settings</MenuItem>
               <MenuItem>Logout</MenuItem>
             </MenuList>

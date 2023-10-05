@@ -5,22 +5,24 @@ import {
   theme,
   Spinner,
 } from "@chakra-ui/react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header";
 
 const HomePage = lazy(() => import('./pages/HomePage'));
+const WorksPage = lazy(() => import('./pages/Works'));
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Router>
+    <BrowserRouter>
       <Header />
       <Box textAlign="center" fontSize="xl">
         <Suspense fallback={<Spinner />}>
-          <Switch>
-            <Route path="/" exact component={HomePage} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<HomePage/>} />
+            <Route path="/works" element={<WorksPage/>} />
+          </Routes>
         </Suspense>
       </Box>
-    </Router>
+    </BrowserRouter>
   </ChakraProvider>
 );
