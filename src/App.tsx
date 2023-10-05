@@ -1,38 +1,26 @@
-import * as React from "react"
+import React, { lazy, Suspense } from "react";
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
-} from "@chakra-ui/react"
-import { Logo } from "./Logo"
-import { Header }  from "./components/Header"
+  Spinner,
+} from "@chakra-ui/react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Header } from "./components/Header";
+
+const HomePage = lazy(() => import('./pages/HomePage'));
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Header />
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
+    <Router>
+      <Header />
+      <Box textAlign="center" fontSize="xl">
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+          </Switch>
+        </Suspense>
+      </Box>
+    </Router>
   </ChakraProvider>
-)
+);
