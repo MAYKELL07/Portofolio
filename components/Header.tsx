@@ -1,6 +1,8 @@
+// components/Header.tsx
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import ContactButton from './ContactButton';
 
 const Header: React.FC = () => {
   return (
@@ -11,10 +13,26 @@ const Header: React.FC = () => {
       </div>
       <nav>
         <ul className="flex space-x-4">
-          <li><Link href="/gallery/photography"><a className="text-white">Photography</a></Link></li>
-          <li><Link href="/gallery/videography"><a className="text-white">Videography</a></Link></li>
-          <li><Link href="/gallery/games"><a className="text-white">Games</a></Link></li>
-          <li><Link href="/gallery/github"><a className="text-white">GitHub</a></Link></li>
+          <li>
+            <Link href="/gallery/photography" className="text-white">
+              Photography
+            </Link>
+          </li>
+          <li>
+            <Link href="/gallery/videography" className="text-white">
+              Videography
+            </Link>
+          </li>
+          <li>
+            <Link href="/gallery/games" className="text-white">
+              Games
+            </Link>
+          </li>
+          <li>
+            <Link href="/gallery/github" className="text-white">
+              GitHub
+            </Link>
+          </li>
         </ul>
       </nav>
       <ContactButton />

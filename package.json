@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^14.2.15",
+    "@types/nodemailer": "^6.4.16",
     "axios": "^1.7.7",
     "bun": "^1.1.30",
     "framer-motion": "^11.11.8",

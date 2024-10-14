@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ContactButton from './ContactButton';
 
 const Hero: React.FC = () => {
   return (
