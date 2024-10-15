@@ -5,7 +5,7 @@ import GalleryRow from '../../components/GalleryRow';
 const Videography: React.FC = () => {
   const videographyItems = [
     // Populate with your videography projects
-    { id: 1, title: 'Wedding videography', image: '/images/photography1.jpg', link: '/gallery/photography' },
+    { id: 1, title: 'Wedding videography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
     // ...more items
   ];
 

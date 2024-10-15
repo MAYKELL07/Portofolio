@@ -14,20 +14,24 @@
     "axios": "^1.7.7",
     "bun": "^1.1.30",
     "framer-motion": "^11.11.8",
-    "next": "14.2.15",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-icons": "^5.3.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.12.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.15",
+    "eslint": "^9.12.0",
+    "eslint-config-next": "^14.2.15",
+    "eslint-plugin-react": "^7.37.1",
+    "globals": "^15.11.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.8.1"
   }
 }

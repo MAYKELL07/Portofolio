@@ -14,22 +14,22 @@ const Header: React.FC = () => {
       <nav>
         <ul className="flex space-x-4">
           <li>
-            <Link href="/gallery/photography" className="text-white">
+            <Link href="/gallery/photography" className="text-white hover:text-accent">
               Photography
             </Link>
           </li>
           <li>
-            <Link href="/gallery/videography" className="text-white">
+            <Link href="/gallery/videography" className="text-white hover:text-accent">
               Videography
             </Link>
           </li>
           <li>
-            <Link href="/gallery/games" className="text-white">
+            <Link href="/gallery/games" className="text-white hover:text-accent">
               Games
             </Link>
           </li>
           <li>
-            <Link href="/gallery/github" className="text-white">
+            <Link href="/gallery/github" className="text-white hover:text-accent">
               GitHub
             </Link>
           </li>

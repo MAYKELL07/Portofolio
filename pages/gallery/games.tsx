@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import Header from '../../components/Header';
 import GalleryRow from '../../components/GalleryRow';
@@ -5,7 +6,7 @@ import GalleryRow from '../../components/GalleryRow';
 const Games: React.FC = () => {
   const gamesItems = [
     // Populate with your photography projects
-    { id: 1, title: 'Wedding Photography', image: '/images/photography1.jpg', link: '/gallery/photography' },
+    { id: 1, title: 'Wedding Photography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
     // ...more items
   ];
 

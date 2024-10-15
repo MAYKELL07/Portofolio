@@ -5,7 +5,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative h-screen">
       <Image
-        src="/images/background.jpg"
+        src="/images/backgrounds/background1.png"
         alt="Michaellie F.Y."
         layout="fill"
         objectFit="cover"

@@ -5,7 +5,7 @@ import GalleryRow from '../../components/GalleryRow';
 const GitHub: React.FC = () => {
   const gitHubItems = [
     // Populate with your photography projects
-    { id: 1, title: 'Wedding Photography', image: '/images/photography1.jpg', link: '/gallery/photography' },
+    { id: 1, title: 'Wedding Photography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
     // ...more items
   ];
 
