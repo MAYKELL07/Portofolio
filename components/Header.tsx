@@ -1,7 +1,7 @@
 // components/Header.tsx
 
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import ContactButton from './ContactButton';
 
 const Header: React.FC = () => {
