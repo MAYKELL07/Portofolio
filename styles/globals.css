@@ -1,3 +1,15 @@
+/* styles/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Global Styles */
+body {
+  @apply bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300;
+}
+
+/* Example: Smooth transitions for all elements */
+* {
+  @apply transition-colors duration-300;
+}

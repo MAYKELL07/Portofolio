@@ -1,7 +1,11 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import GalleryRow from '../components/GalleryRow';
+import dynamic from 'next/dynamic';
+
+const Hero3D = dynamic(() => import('../components/Hero3D'), { ssr: false });
 
 const Home: React.FC = () => {
   const photographyItems = [
@@ -43,7 +47,7 @@ const Home: React.FC = () => {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />
-      <Hero />
+      <Hero3D />
       <GalleryRow title="Photography" items={photographyItems} />
       <GalleryRow title="Videography" items={videographyItems} />
       <GalleryRow title="Games" items={gamesItems} />
