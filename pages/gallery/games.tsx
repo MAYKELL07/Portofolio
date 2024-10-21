@@ -5,10 +5,12 @@ import GalleryRow from '../../components/GalleryRow';
 
 const Games: React.FC = () => {
   const gamesItems = [
-    // Populate with your photography projects
-    { id: 1, title: 'Wedding Photography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
-    // ...more items
+    { id: 1, title: 'Wedding Photography', subtitle: 'Capturing special moments', image: '/images/photography/photography1.png', link: '/gallery/photography' },
+    { id: 2, title: 'Street Portraits', subtitle: 'Urban vibes', image: '/images/photography/photography2.png', link: '/gallery/photography' },
+    { id: 3, title: 'Landscape Shoots', subtitle: 'Nature’s beauty', image: '/images/photography/photography3.png', link: '/gallery/photography' },
+    // More items...
   ];
+  
 
   return (
     <>
