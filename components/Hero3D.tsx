@@ -16,17 +16,17 @@ interface ModelData {
 const models: ModelData[] = [
   {
     path: '/models/cameras/camera1.glb',
-    scale: [2, 2, 2],
+    scale: [10, 10, 10],
     position: [0, 0, 0],
   },
   {
     path: '/models/cameras/camera2.glb',
-    scale: [1.8, 1.8, 1.8],
-    position: [0.5, 0, 0],
+    scale: [10, 10, 10],
+    position: [0, -2, 0],
   },
   {
     path: '/models/cameras/camera3.glb',
-    scale: [2.2, 2.2, 2.2],
+    scale: [8, 8, 8],
     position: [-0.5, 0, 0],
   },
 ];
@@ -84,10 +84,10 @@ const Scene: React.FC = () => {
   return (
     <>
       {/* Adjust lighting based on the theme */}
-      <ambientLight intensity={theme === 'dark' ? 0.8 : 0.5} />
+      <ambientLight intensity={theme === 'dark' ? 1 : 2} />
       <directionalLight
         position={[5, 5, 5]}
-        intensity={theme === 'dark' ? 1.5 : 1}
+        intensity={theme === 'dark' ? 2 : 1}
       />
       {/* Render all camera models, but only the active one is visible */}
       {models.map((model, index) => (

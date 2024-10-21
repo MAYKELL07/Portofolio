@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import React from 'react';
 
 const ContactForm: React.FC = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });

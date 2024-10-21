@@ -1,7 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
-import Head from 'next/head';
+import React from 'react';import Head from 'next/head';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
 import GalleryRow from '../components/GalleryRow';
 import dynamic from 'next/dynamic';
 

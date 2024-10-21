@@ -1,6 +1,6 @@
-/* eslint-disable react/react-in-jsx-scope */
 import Image from "next/legacy/image";
 import ContactButton from './ContactButton';
+import React from 'react';
 
 const Hero: React.FC = () => {
   return (
