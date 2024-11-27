@@ -1,0 +1,72 @@
+{
+    "photography": [
+      {
+        "id": 1,
+        "title": "Street Photography",
+        "subtitle": "Tunjungan Surabaya at night",
+        "image": "/images/photography/tunjungan.png",
+        "link": "/gallery/photography"
+      },
+      {
+        "id": 2,
+        "title": "Event Photography",
+        "subtitle": "School ASCE Event at SMA Petra 3 Surabaya",
+        "image": "/images/photography/asce.png",
+        "link": "/gallery/photography"
+      },
+      {
+        "id": 3,
+        "title": "Portraits",
+        "subtitle": "Capturing Beauty",
+        "image": "/images/photography/portrait.png",
+        "link": "/gallery/photography"
+      },
+      {
+        "id": 4,
+        "title": "4 Portraits",
+        "subtitle": "Urban vibes",
+        "image": "/images/photography/photography1.png",
+        "link": "/gallery/photography"
+      },
+      {
+        "id": 5,
+        "title": "5 Portraits",
+        "subtitle": "Urban vibes",
+        "image": "/images/photography/photography1.png",
+        "link": "/gallery/photography"
+      },
+      {
+        "id": 6,
+        "title": "6 Portraits",
+        "subtitle": "Urban vibes",
+        "image": "/images/photography/photography1.png",
+        "link": "/gallery/photography"
+      },
+      {
+        "id": 7,
+        "title": "7 Portraits",
+        "subtitle": "Urban vibes",
+        "image": "/images/photography/photography1.png",
+        "link": "/gallery/photography"
+      }
+    ],
+    "videography": [
+      {
+        "id": 1,
+        "title": "Wedding Videography",
+        "subtitle": "Documenting love stories",
+        "image": "/images/videography/videography1.png",
+        "link": "/gallery/videography"
+      }
+    ],
+    "games": [
+      {
+        "id": 1,
+        "title": "Game Development",
+        "subtitle": "Bringing ideas to life",
+        "image": "/images/games/game1.png",
+        "link": "/gallery/games"
+      }
+    ]
+  }
+  

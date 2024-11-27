@@ -4,12 +4,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Global Styles */
+/* Import custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap');
+
+/* Global Font Styling */
 body {
   @apply bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300;
+  font-family: 'Montserrat', sans-serif;
 }
 
-/* Example: Smooth transitions for all elements */
+/* Apply Bebas Neue for Headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Smooth transitions for all elements */
 * {
   @apply transition-colors duration-300;
+}
+
+/* Minimalist scrollbar styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #4B5563 #E5E7EB;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #4B5563; /* dark gray */
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #E5E7EB; /* light gray */
+}
+
+/* Hide scrollbar for specific elements */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Utility classes for accent colors */
+.text-accent {
+  color: #FF6347; /* Example accent color */
+}
+
+.bg-primary {
+  background-color: #1A202C; /* Dark gray-blue for headers and footers */
 }

@@ -6,6 +6,8 @@ const Photography: React.FC = () => {
   const photographyItems = [
     // Populate with your photography projects
     { id: 1, title: 'Wedding Photography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
+    { id: 2, title: 'Wedding Photography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
+    { id: 3, title: 'Wedding Photography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
     // ...more items
   ];
 
