@@ -12,17 +12,17 @@ interface ModelData {
 const models: ModelData[] = [
   {
     path: "/models/cameras/camera1.glb",
-    scale: [10, 10, 10],
+    scale: [20, 20, 20],
     position: [2, 0, 0],
   },
   {
     path: "/models/cameras/camera2.glb",
-    scale: [8, 7, 8],
+    scale: [18, 17, 18],
     position: [2, -2, 0],
   },
   {
     path: "/models/cameras/camera3.glb",
-    scale: [8, 8, 8],
+    scale: [18, 18, 18],
     position: [2, 0, 0],
   },
 ];
