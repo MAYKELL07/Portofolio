@@ -1,6 +1,6 @@
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Html } from "@react-three/drei";
+import { OrbitControls, useGLTF, Html, SpotLight } from "@react-three/drei";
 import { useTheme } from "next-themes";
 
 interface ModelData {
@@ -12,18 +12,18 @@ interface ModelData {
 const models: ModelData[] = [
   {
     path: "/models/cameras/camera1.glb",
-    scale: [20, 20, 20],
-    position: [2, 0, 0],
+    scale: [10, 10, 10],
+    position: [0, 0, 0],
   },
   {
     path: "/models/cameras/camera2.glb",
-    scale: [18, 17, 18],
-    position: [2, -2, 0],
+    scale: [10, 10, 10],
+    position: [0, -3, 0],
   },
   {
     path: "/models/cameras/camera3.glb",
-    scale: [18, 18, 18],
-    position: [2, 0, 0],
+    scale: [10, 10, 10],
+    position: [0, 0, 0],
   },
 ];
 
@@ -41,23 +41,22 @@ const CameraModel: React.FC<CameraModelProps> = ({
   position,
 }) => {
   const { scene } = useGLTF(modelPath);
-  const ref = useRef<THREE.Group>(null);
 
   useFrame(() => {
-    if (ref.current && isActive) {
-      ref.current.rotation.y += 0.01;
+    if (isActive && scene) {
+      scene.rotation.y += 0.01;
     }
   });
 
   return isActive ? (
-    <primitive object={scene} ref={ref} scale={scale} position={position} />
+    <primitive object={scene} scale={scale} position={position} />
   ) : null;
 };
 
 const Scene: React.FC = () => {
   const { theme } = useTheme();
   const [activeModel, setActiveModel] = useState(0);
-  const cumulativeRotationRef = useRef<number>(0);
+  const cumulativeRotationRef = React.useRef(0);
 
   const rotationSpeed = 0.01;
 
@@ -72,10 +71,26 @@ const Scene: React.FC = () => {
 
   return (
     <>
-      <ambientLight intensity={theme === "dark" ? 1 : 4} />
+      {/* Lighting setup */}
+      <ambientLight intensity={theme === "dark" ? 0.2 : 0.5} />
+      <spotLight
+        position={[10, 10, 10]}
+        angle={0.3}
+        penumbra={1}
+        intensity={1}
+        castShadow
+      />
+      <spotLight
+        position={[-10, 10, 10]}
+        angle={0.3}
+        penumbra={1}
+        intensity={1}
+        castShadow
+      />
       <directionalLight
-        position={[5, 5, 5]}
-        intensity={theme === "dark" ? 3 : 1}
+        position={[0, 5, -5]}
+        intensity={theme === "dark" ? 1 : 0.5}
+        color={theme === "dark" ? "white" : "#ffe6cc"}
       />
       {models.map((model, index) => (
         <CameraModel
@@ -92,9 +107,32 @@ const Scene: React.FC = () => {
 };
 
 const Hero3D: React.FC = () => {
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const fadeOutStart = 0;
+      const fadeOutEnd = 300;
+      const newOpacity = Math.max(
+        0,
+        1 - (scrollPosition - fadeOutStart) / (fadeOutEnd - fadeOutStart)
+      );
+      setOpacity(newOpacity);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      <Canvas camera={{ position: [-3, 5, 5], fov: 50 }}>
+    <section className="sticky top-0 h-screen w-full overflow-hidden z-0">
+      <Canvas
+        style={{
+          background: "linear-gradient(135deg, #1d3557, #457b9d, #a8dadc)",
+        }}
+        camera={{ position: [-3, 2, 5], fov: 35 }}
+      >
         <Suspense
           fallback={
             <Html center>
@@ -106,22 +144,34 @@ const Hero3D: React.FC = () => {
         </Suspense>
       </Canvas>
 
-      {/* Overlay content on top of the 3D scene */}
-      <div className="absolute inset-0 flex flex-col items-start justify-center px-4 z-10">
-        <div className="bg-black bg-opacity-50 p-6 rounded-lg shadow-lg">
-          <h1 className="text-6xl font-extrabold tracking-tight text-white sm:text-7xl animate-fade-in text-left">
-            Welcome to <span className="text-indigo-500">Gokil Studio</span>
-          </h1>
-          <p className="mt-4 text-xl sm:text-2xl text-gray-200 max-w-3xl leading-relaxed animate-fade-in delay-500 text-left">
-            Capturing Moments, Crafting Lifelong Memories with Every Click
-          </p>
-          <div className="mt-6 flex space-x-4 animate-fade-in delay-1000">
-            <a
-              href="#contact"
-              className="px-6 py-3 bg-indigo-600 text-white rounded-md text-lg font-medium hover:bg-indigo-500 transition duration-300 shadow-lg"
-            >
-              Contact Me
-            </a>
+      {/* Overlay content */}
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10"
+        style={{ opacity, transition: "opacity 0.3s ease-out" }}
+      >
+        <div className="relative p-8">
+          <div className="relative z-10">
+            <h1 className="text-8xl font-bold tracking-wide text-white font-bebas text-center">
+              Welcome to{" "}
+              <span className="text-indigo-400 drop-shadow-lg">Gokil Studio</span>
+            </h1>
+            <p className="mt-6 text-2xl text-gray-200 leading-relaxed text-center">
+              Capturing Moments, Crafting Lifelong Memories
+            </p>
+            <div className="mt-8 flex justify-center space-x-6">
+              <a
+                href="#contact"
+                className="px-8 py-4 bg-indigo-600 text-white rounded-full text-lg font-medium shadow-lg hover:bg-indigo-500 hover:shadow-2xl transition-transform transform hover:scale-105"
+              >
+                Contact Me
+              </a>
+              <a
+                href="#portfolio"
+                className="px-8 py-4 bg-transparent border border-indigo-600 text-indigo-600 rounded-full text-lg font-medium shadow-lg hover:bg-indigo-600 hover:text-white hover:shadow-2xl transition-transform transform hover:scale-105"
+              >
+                View Portfolio
+              </a>
+            </div>
           </div>
         </div>
       </div>

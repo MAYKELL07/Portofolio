@@ -75,23 +75,25 @@ const Home: React.FC = () => {
       <Header />
       <Hero3D />
 
-      {isLoading && <p className="text-center py-4">Loading galleries...</p>}
-      {error && <p className="text-center py-4 text-red-500">{error}</p>}
-
       {!isLoading && !error && (
-        <>
-          {galleries.photography.length > 0 && (
-            <GalleryRow title="Photography" items={galleries.photography} />
-          )}
-          {galleries.videography.length > 0 && (
-            <GalleryRow title="Videography" items={galleries.videography} />
-          )}
-          {galleries.games.length > 0 && (
-            <GalleryRow title="Games" items={galleries.games} />
-          )}
-          <GalleryRow title="GitHub Projects" items={galleries.games} />
-        </>
+        <div className="relative">
+          <div className="absolute inset-0 bg-opacity-25 backdrop-blur-lg z-0"></div>
+
+          <div className="relative z-10">
+            {galleries.photography.length > 0 && (
+              <GalleryRow title="Photography" items={galleries.photography} />
+            )}
+            {galleries.videography.length > 0 && (
+              <GalleryRow title="Videography" items={galleries.videography} />
+            )}
+            {galleries.games.length > 0 && (
+              <GalleryRow title="Games" items={galleries.games} />
+            )}
+            <GalleryRow title="GitHub Projects" items={galleries.games} />
+          </div>
+        </div>
       )}
+
 
       <footer className="py-8 bg-primary text-white text-center">
         <p>&copy; {new Date().getFullYear()} Gokil Studio. All rights reserved.</p>
