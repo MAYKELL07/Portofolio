@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Html, SpotLight } from "@react-three/drei";
 import { useTheme } from "next-themes";
+import dynamic from 'next/dynamic';
 
 interface ModelData {
   path: string;
@@ -44,7 +45,7 @@ const CameraModel: React.FC<CameraModelProps> = ({
 
   useFrame(() => {
     if (isActive && scene) {
-      scene.rotation.y += 0.01;
+      scene.rotation.y += 0.002;
     }
   });
 
@@ -55,58 +56,103 @@ const CameraModel: React.FC<CameraModelProps> = ({
 
 const Scene: React.FC = () => {
   const { theme } = useTheme();
-  const [activeModel, setActiveModel] = useState(0);
-  const cumulativeRotationRef = React.useRef(0);
-
-  const rotationSpeed = 0.01;
-
-  useFrame(() => {
-    cumulativeRotationRef.current += rotationSpeed;
-
-    if (cumulativeRotationRef.current >= (2 * Math.PI) / 3) {
-      cumulativeRotationRef.current = 0;
-      setActiveModel((prev) => (prev + 1) % models.length);
-    }
-  });
+  const model = models[0]; // Use only the first model
 
   return (
     <>
       {/* Lighting setup */}
-      <ambientLight intensity={theme === "dark" ? 0.2 : 0.5} />
+      <ambientLight intensity={theme === "dark" ? 0.3 : 0.7} />
       <spotLight
-        position={[10, 10, 10]}
+        position={[15, 20, 5]}
         angle={0.3}
         penumbra={1}
-        intensity={1}
+        intensity={1.5}
         castShadow
       />
       <spotLight
-        position={[-10, 10, 10]}
+        position={[-15, 20, 5]}
         angle={0.3}
         penumbra={1}
-        intensity={1}
+        intensity={1.5}
         castShadow
       />
       <directionalLight
-        position={[0, 5, -5]}
-        intensity={theme === "dark" ? 1 : 0.5}
+        position={[0, 10, -10]}
+        intensity={theme === "dark" ? 1.2 : 0.8}
         color={theme === "dark" ? "white" : "#ffe6cc"}
       />
-      {models.map((model, index) => (
-        <CameraModel
-          key={index}
-          modelPath={model.path}
-          isActive={index === activeModel}
-          scale={model.scale}
-          position={model.position}
-        />
-      ))}
-      <OrbitControls enableZoom={false} enablePan={false} />
+      <pointLight position={[0, -10, 10]} intensity={0.5} />
+      <CameraModel
+        modelPath={model.path}
+        isActive={true}
+        scale={model.scale}
+        position={model.position}
+      />
+      <OrbitControls enableZoom={false} enablePan={true} />
     </>
   );
 };
 
-const Hero3D: React.FC = () => {
+const StarsBackground: React.FC = () => {
+  const [stars, setStars] = useState<{ x: number; y: number; opacity: number }[]>([]);
+
+  useEffect(() => {
+    const generateStars = () => {
+      const newStars = [];
+      for (let i = 0; i < 100; i++) {
+        newStars.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          opacity: Math.random(),
+        });
+      }
+      setStars(newStars);
+    };
+
+    generateStars();
+    window.addEventListener("resize", generateStars);
+    return () => window.removeEventListener("resize", generateStars);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStars((prevStars) =>
+        prevStars.map((star) => ({
+          ...star,
+          opacity: Math.random(),
+        }))
+      );
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 z-0">
+      {stars.map((star, index) => (
+        <div
+          key={index}
+          style={{
+            position: "absolute",
+            top: star.y,
+            left: star.x,
+            width: "2px",
+            height: "2px",
+            backgroundColor: "white",
+            opacity: star.opacity,
+            transition: "opacity 1s ease-in-out",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+interface Hero3DProps {
+  onContactClick: () => void;
+}
+
+const Hero3D: React.FC<Hero3DProps> = ({ onContactClick }) => {
   const [opacity, setOpacity] = useState(1);
 
   useEffect(() => {
@@ -127,10 +173,9 @@ const Hero3D: React.FC = () => {
 
   return (
     <section className="sticky top-0 h-screen w-full overflow-hidden z-0">
+      <StarsBackground />
       <Canvas
-        style={{
-          background: "linear-gradient(135deg, #1d3557, #457b9d, #a8dadc)",
-        }}
+        style={{ background: "transparent" }}
         camera={{ position: [-3, 2, 5], fov: 35 }}
       >
         <Suspense
@@ -151,23 +196,22 @@ const Hero3D: React.FC = () => {
       >
         <div className="relative p-8">
           <div className="relative z-10">
-            <h1 className="text-8xl font-bold tracking-wide text-white font-bebas text-center">
-              Welcome to{" "}
-              <span className="text-indigo-400 drop-shadow-lg">Gokil Studio</span>
+            <h1 className="text-8xl font-light tracking-wide text-gray-300 font-bebas-neue-bold text-center">
+              GOKIL STUDIO
             </h1>
-            <p className="mt-6 text-2xl text-gray-200 leading-relaxed text-center">
+            <p className="mt-6 text-2xl text-gray-300 font-montserrat-light leading-relaxed text-center">
               Capturing Moments, Crafting Lifelong Memories
             </p>
             <div className="mt-8 flex justify-center space-x-6">
-              <a
-                href="#contact"
-                className="px-8 py-4 bg-indigo-600 text-white rounded-full text-lg font-medium shadow-lg hover:bg-indigo-500 hover:shadow-2xl transition-transform transform hover:scale-105"
+              <button
+                onClick={onContactClick}
+                className="button-hover-effect px-8 py-4 bg-yellow-500 text-white rounded-full text-lg font-medium shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105"
               >
                 Contact Me
-              </a>
+              </button>
               <a
-                href="#portfolio"
-                className="px-8 py-4 bg-transparent border border-indigo-600 text-indigo-600 rounded-full text-lg font-medium shadow-lg hover:bg-indigo-600 hover:text-white hover:shadow-2xl transition-transform transform hover:scale-105"
+                href="#gallery-rows"
+                className="button-hover-effect px-8 py-4 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border border-gray-300 text-gray-300 rounded-full text-lg font-medium shadow-lg hover:bg-opacity-20 hover:shadow-2xl transition-transform transform hover:scale-105"
               >
                 View Portfolio
               </a>
@@ -175,8 +219,32 @@ const Hero3D: React.FC = () => {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .button-hover-effect {
+          position: relative;
+          overflow: hidden;
+          display: inline-block;
+        }
+
+        .button-hover-effect::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.2);
+          transform: scaleY(0);
+          transform-origin: bottom;
+          transition: transform 0.3s ease-out;
+        }
+
+        .button-hover-effect:hover::before {
+          transform: scaleY(1);
+        }
+      `}</style>
     </section>
   );
 };
 
-export default Hero3D;
+export default dynamic(() => Promise.resolve(Hero3D), { ssr: false });

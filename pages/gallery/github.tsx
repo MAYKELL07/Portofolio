@@ -1,22 +1,22 @@
 import Head from 'next/head';
 import Header from '../../components/Header';
-import GalleryRow from '../../components/GalleryRow';
 
 const GitHub: React.FC = () => {
-  const gitHubItems = [
-    // Populate with your photography projects
-    { id: 1, title: 'Wedding Photography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
-    // ...more items
-  ];
-
   return (
     <>
       <Head>
-        <title>Photography - Gokil Studio</title>
-        <meta name="description" content="Explore the photography portfolio of Gokil Studio." />
+        <title>GitHub - Gokil Studio</title>
+        <meta name="description" content="Explore the GitHub portfolio of Gokil Studio." />
       </Head>
-      <Header />
-      <GalleryRow title="GitHub" items={gitHubItems} />
+      <Header isOnHero={false} />
+      <div className="text-center mt-12 pt-28">
+        <h1 className="font-bebas-neue-light text-9xl">Coming Soon</h1>
+        <a href="https://github.com/MAYKELL07" target="_blank" rel="noopener noreferrer">
+          <button className="mt-5 px-5 py-2 text-lg bg-white bg-opacity-20 border-none rounded-lg backdrop-blur text-white cursor-pointer">
+            Visit GitHub
+          </button>
+        </a>
+      </div>
     </>
   );
 };

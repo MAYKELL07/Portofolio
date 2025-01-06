@@ -6,3 +6,146 @@
 
 /* Import custom fonts */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap');
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/bebasneue/v2/JTUSjIg69CK48gW7PXoo9Wdhzg.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url('/fonts/BebasNeue-Thin.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/BebasNeue-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/BebasNeue-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/BebasNeue-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/BebasNeue-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_aZA3g3D_u50.woff2') format('woff2');
+}
+
+
+/* Apply custom fonts */
+.font-bebas-neue {
+    font-family: "Bebas Neue", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font-bebas-neue-thin {
+    font-family: "Bebas Neue", serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.font-bebas-neue-light {
+    font-family: "Bebas Neue", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.font-bebas-neue-regular {
+    font-family: "Bebas Neue", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font-bebas-neue-medium {
+    font-family: "Bebas Neue", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.font-bebas-neue-bold {
+    font-family: "Bebas Neue", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.font-montserrat-thin {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.font-montserrat-light {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.font-montserrat-regular {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font-montserrat-medium {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.font-montserrat-semibold {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.font-montserrat-bold {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.font-montserrat-extrabold {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+}
+

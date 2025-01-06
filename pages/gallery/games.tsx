@@ -1,25 +1,22 @@
-/* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import Header from '../../components/Header';
-import GalleryRow from '../../components/GalleryRow';
 
 const Games: React.FC = () => {
-  const gamesItems = [
-    { id: 1, title: 'Wedding Photography', subtitle: 'Capturing special moments', image: '/images/photography/photography1.png', link: '/gallery/photography' },
-    { id: 2, title: 'Street Portraits', subtitle: 'Urban vibes', image: '/images/photography/photography2.png', link: '/gallery/photography' },
-    { id: 3, title: 'Landscape Shoots', subtitle: 'Nature’s beauty', image: '/images/photography/photography3.png', link: '/gallery/photography' },
-    // More items...
-  ];
-  
-
   return (
     <>
       <Head>
-        <title>Photography - Gokil Studio</title>
-        <meta name="description" content="Explore the photography portfolio of Gokil Studio." />
+        <title>Games - Gokil Studio</title>
+        <meta name="description" content="Explore the games portfolio of Gokil Studio." />
       </Head>
-      <Header />
-      <GalleryRow title="Games" items={gamesItems} />
+      <Header isOnHero={false} />
+      <div className="text-center mt-12 pt-28">
+        <h1 className="font-bebas-neue-light text-9xl">Coming Soon</h1>
+        <a href="https://www.fiverr.com/maykellie?up_rollout=true" target="_blank" rel="noopener noreferrer">
+          <button className="mt-5 px-5 py-2 text-lg bg-white bg-opacity-20 border-none rounded-lg backdrop-blur text-white cursor-pointer">
+            Visit Fiverr
+          </button>
+        </a>
+      </div>
     </>
   );
 };

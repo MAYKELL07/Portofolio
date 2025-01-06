@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import ContactForm from '../components/ContactForm';
 
 const Header = dynamic(() => import('../components/Header'));
-const GalleryRow = dynamic(() => import('../components/GalleryRow'));
+const RevealBento = dynamic(() => import('../components/Blocks'), { ssr: false });
 const Hero3D = dynamic(() => import('../components/Hero3D'), { ssr: false });
 
 interface GalleryData {
@@ -28,6 +29,12 @@ const Home: React.FC = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isHeaderOnHero, setIsHeaderOnHero] = useState(true);
+  const [isContactFormVisible, setIsContactFormVisible] = useState(false);
+
+  const toggleContactForm = () => {
+    setIsContactFormVisible(!isContactFormVisible);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,9 +54,21 @@ const Home: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsHeaderOnHero(window.scrollY < window.innerHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <Head>
+      <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
         <title>Michaellie F.Y. - Gokil Studio</title>
         <meta
           name="description"
@@ -72,28 +91,22 @@ const Home: React.FC = () => {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <Header />
-      <Hero3D />
+      <Header isOnHero={isHeaderOnHero} />
+      <Hero3D onContactClick={toggleContactForm} />  
 
-      {!isLoading && !error && (
-        <div className="relative">
-          <div className="absolute inset-0 bg-opacity-25 backdrop-blur-lg z-0"></div>
-
+     {!isLoading && !error && (
+        <div id="gallery-rows" className="relative">
           <div className="relative z-10">
-            {galleries.photography.length > 0 && (
-              <GalleryRow title="Photography" items={galleries.photography} />
-            )}
-            {galleries.videography.length > 0 && (
-              <GalleryRow title="Videography" items={galleries.videography} />
-            )}
-            {galleries.games.length > 0 && (
-              <GalleryRow title="Games" items={galleries.games} />
-            )}
-            <GalleryRow title="GitHub Projects" items={galleries.games} />
+            <RevealBento onContactClick={toggleContactForm} />
           </div>
         </div>
       )}
 
+      {isContactFormVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <ContactForm onClose={toggleContactForm} />
+        </div>
+      )}
 
       <footer className="py-8 bg-primary text-white text-center">
         <p>&copy; {new Date().getFullYear()} Gokil Studio. All rights reserved.</p>

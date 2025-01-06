@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        'bebas-neue': ['"Bebas Neue"', 'cursive'],
+        'montserrat': ['"Montserrat"', 'serif'],
+      },
     },
   },
   plugins: [],

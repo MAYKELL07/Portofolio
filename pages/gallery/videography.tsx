@@ -1,22 +1,17 @@
 import Head from 'next/head';
 import Header from '../../components/Header';
-import GalleryRow from '../../components/GalleryRow';
 
 const Videography: React.FC = () => {
-  const videographyItems = [
-    // Populate with your videography projects
-    { id: 1, title: 'Wedding videography', image: '/images/photography/photography1.png', link: '/gallery/photography' },
-    // ...more items
-  ];
-
   return (
     <>
       <Head>
-        <title>Photography - Gokil Studio</title>
-        <meta name="description" content="Explore the photography portfolio of Gokil Studio." />
+        <title>Videography - Gokil Studio</title>
+        <meta name="description" content="Explore the videography portfolio of Gokil Studio." />
       </Head>
-      <Header />
-      <GalleryRow title="Photography" items={videographyItems} />
+      <Header isOnHero={false} />
+      <div className="text-center mt-12 pt-28">
+        <h1 className="font-bebas-neue-light text-9xl">Coming Soon</h1>
+      </div>
     </>
   );
 };

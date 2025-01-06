@@ -14,9 +14,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       return res.status(400).json({ message: 'All fields are required.' });
     }
 
+    // Ensure environment variables are set
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.CONTACT_EMAIL) {
+      return res.status(500).json({ message: 'Email environment variables are not set.' });
+    }
+
     // Create transporter
     const transporter = nodemailer.createTransport({
-      service: 'Gmail', // or your email provider
+      host: 'smtp-relay.brevo.com',
+      port: 587,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -35,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       await transporter.sendMail(mailOptions);
       return res.status(200).json({ message: 'Message sent successfully!' });
     } catch (error) {
-      console.error(error);
+      console.error('Error sending email:', error);
       return res.status(500).json({ message: 'Internal Server Error' });
     }
   } else {
